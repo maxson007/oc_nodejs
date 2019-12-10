@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const stuffRoutes = require('./routes/stuff');
 const mongoose = require('mongoose');
-
+const userRoutes = require('./routes/user');
 mongoose.connect('mongodb://root:example@localhost:27017/admin?retryWrites=true&w=majority',
     { useNewUrlParser: true,
         useUnifiedTopology: true })
@@ -18,4 +18,5 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use('/api/stuff', stuffRoutes);
+app.use('/api/auth', userRoutes);
 module.exports = app;
